@@ -8,8 +8,8 @@ namespace Catalog.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection collection)
         {
-            collection.AddSingleton<ICategoryRepository, CategoryRepository>();
-            collection.AddSingleton<IItemRepository, ItemRepository>();
+            collection.AddScoped<ICategoryRepository, CategoryRepository>();
+            collection.AddScoped<IItemRepository, ItemRepository>();
             return collection;
         }
     }
