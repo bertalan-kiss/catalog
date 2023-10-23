@@ -2,10 +2,10 @@
 
 namespace Catalog.Api.Mappers
 {
-	public static class ItemMapper
-	{
-		public static Domain.Entities.Item Map(AddItemRequest request)
-		{
+    public static class ItemMapper
+    {
+        public static Domain.Entities.Item Map(AddItemRequest request)
+        {
             return new Domain.Entities.Item
             {
                 Name = request.Name,

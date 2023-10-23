@@ -1,7 +1,7 @@
 ﻿namespace Catalog.Api.Requests
 {
-	public class UpdateItemRequest
-	{
+    public class UpdateItemRequest
+    {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
