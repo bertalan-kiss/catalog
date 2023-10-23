@@ -41,7 +41,8 @@ namespace Catalog.Infrastructure.DataAccess.Repositories
 
         public async Task Delete(int id)
         {
-            var sql = @"DELETE FROM Category WHERE Id = @Id";
+            var sql = @"DELETE FROM Item WHERE CategoryId = @Id
+                    DELETE FROM Category WHERE Id = @Id";
             var parameters = new { Id = id };
 
             var rowsAffected = await connection.ExecuteAsync(sql, parameters);

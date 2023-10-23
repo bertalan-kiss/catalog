@@ -15,9 +15,15 @@
 
   <ItemGroup>
     <None Remove="Configuration\" />
+    <None Remove="Requests\" />
+    <None Remove="Controllers\V1\" />
+    <None Remove="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
+    <Folder Include="Requests\" />
+    <Folder Include="Controllers\V1\" />
+    <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj">

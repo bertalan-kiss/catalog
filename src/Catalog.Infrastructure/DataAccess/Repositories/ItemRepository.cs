@@ -84,11 +84,30 @@ public class ItemRepository : BaseRepository, IItemRepository
         };
     }
 
-    public async Task<IEnumerable<Item>> List()
+    public async Task<IEnumerable<Item>> List(int? categoryId, int? pageSize, int? page)
     {
-        var sql = "SELECT * FROM Item";
+        var sql = "SELECT * FROM Item ";
+        int? offset = null;
 
-        var items = await connection.QueryAsync(sql);
+        if (categoryId != null)
+        {
+            sql += "WHERE CategoryId = @CategoryId ";
+        }
+
+        if (pageSize != null && page != null)
+        {
+            offset = (page - 1) * pageSize;
+            sql += "ORDER BY Id OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+        }
+
+        var parameters = new
+        {
+            CategoryId = categoryId,
+            PageSize = pageSize,
+            Offset = offset
+        };
+        
+        var items = await connection.QueryAsync(sql, parameters);
 
         var result = new List<Item>();
 

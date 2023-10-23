@@ -33,9 +33,9 @@ namespace Catalog.Application.Services
             return await itemRepository.Get(id);
         }
 
-        public async Task<IEnumerable<Item>> List()
+        public async Task<IEnumerable<Item>> List(int? categoryId, int? pageSize, int? page)
         {
-            return await itemRepository.List();
+            return await itemRepository.List(categoryId, pageSize, page);
         }
 
         public async Task Update(Item item)
