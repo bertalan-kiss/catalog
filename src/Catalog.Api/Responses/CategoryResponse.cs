@@ -1,7 +1,7 @@
 ﻿namespace Catalog.Api.Responses
 {
-	public class CategoryResponse
-	{
+    public class CategoryResponse
+    {
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }

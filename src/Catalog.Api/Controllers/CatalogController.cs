@@ -12,9 +12,7 @@ namespace Catalog.Api.Controllers
         [HttpGet]
         [Route("")]
         [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<Link>))]
-        public IActionResult Root()
-        {
-            return Ok(new List<Link>
+        public IActionResult Root() => Ok(new List<Link>
         {
             new Link
             {
@@ -41,7 +39,6 @@ namespace Catalog.Api.Controllers
                 Method = "POST"
             }
         });
-        }
     }
 }
 
