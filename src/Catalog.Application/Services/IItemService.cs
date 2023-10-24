@@ -6,7 +6,7 @@ namespace Catalog.Application.Services
     {
         Task<int> Add(Item item);
         Task<Item> Get(int id);
-        Task<IEnumerable<Item>> List(int? categoryId, int? pageSize, int? page);
+        Task<IEnumerable<Item>> List(int categoryId, int pageSize, int page);
         Task Update(Item item);
         Task Delete(int id);
     }

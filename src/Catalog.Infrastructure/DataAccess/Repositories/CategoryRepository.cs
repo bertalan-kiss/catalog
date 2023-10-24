@@ -3,6 +3,7 @@ using Catalog.Application.Interfaces;
 using Catalog.Domain.Entities;
 using Catalog.Domain.Exceptions;
 using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace Catalog.Infrastructure.DataAccess.Repositories
 {
@@ -36,7 +37,17 @@ namespace Catalog.Infrastructure.DataAccess.Repositories
                 ParentId = category.Parent?.Id
             };
 
-            return await connection.QuerySingleAsync<int>(sql, parameters);
+            try
+            {
+                return await connection.QuerySingleAsync<int>(sql, parameters);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                    throw new CategoryConflictException($"Parent category with id: {category.Parent?.Id} does not exist");
+
+                throw;
+            }
         }
 
         public async Task Delete(int id)
@@ -44,8 +55,19 @@ namespace Catalog.Infrastructure.DataAccess.Repositories
             var sql = @"DELETE FROM Item WHERE CategoryId = @Id
                     DELETE FROM Category WHERE Id = @Id";
             var parameters = new { Id = id };
+            var rowsAffected = 0;
 
-            var rowsAffected = await connection.ExecuteAsync(sql, parameters);
+            try
+            {
+                rowsAffected = await connection.ExecuteAsync(sql, parameters);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                    throw new CategoryConflictException($"Category with id: {id} has child categories which need to be deleted first");
+
+                throw;
+            }
 
             if (rowsAffected == 0)
                 throw new CategoryNotFoundException($"Category not found with id: {id}");
@@ -116,8 +138,27 @@ namespace Catalog.Infrastructure.DataAccess.Repositories
                 WHERE
                     Id = @Id";
 
-            var parameters = new { Name = category.Name, ImageUrl = category.ImageUrl, ParentId = category.Parent?.Id, Id = category.Id };
-            var rowsAffected = await connection.ExecuteAsync(sql, parameters);
+            var parameters = new
+            {
+                Name = category.Name,
+                ImageUrl = category.ImageUrl,
+                ParentId = category.Parent?.Id,
+                Id = category.Id
+            };
+
+            var rowsAffected = 0;
+
+            try
+            {
+                rowsAffected = await connection.ExecuteAsync(sql, parameters);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                    throw new CategoryConflictException($"Parent category with id: {category.Parent?.Id} does not exist");
+
+                throw;
+            }
 
             if (rowsAffected == 0)
                 throw new CategoryNotFoundException($"Category not found with id: {category.Id}");

@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Api.Requests
 {
-    public class AddCategoryRequest
+    public class CategoryRequest
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }
