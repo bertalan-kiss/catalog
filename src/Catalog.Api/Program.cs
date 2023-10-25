@@ -1,8 +1,6 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using Catalog.Api.Configuration;
 using Catalog.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
 namespace Catalog.Api;
