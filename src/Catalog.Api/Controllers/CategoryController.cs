@@ -58,7 +58,7 @@ public class CategoryController : ControllerBase
 
     [HttpPost]
     [Route("category")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
+    [SwaggerResponse((int)HttpStatusCode.Created, nameof(HttpStatusCode.Created), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -69,7 +69,7 @@ public class CategoryController : ControllerBase
             var category = CategoryMapper.Map(request);
             category.Id = await categoryService.Add(category);
 
-            return Ok(CategoryMapper.Map(category));
+            return Created($"/catalog/category/{category.Id}", CategoryMapper.Map(category));
         }
         catch (FluentValidation.ValidationException ex)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Catalog.Api.Mappers;
 using Catalog.Api.Requests;
+using Catalog.Api.Responses;
 using Catalog.Application.Services;
 using Catalog.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -22,27 +23,28 @@ public class ItemController : ControllerBase
 
     [HttpGet]
     [Route("item/{categoryId}")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<Domain.Entities.Item>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<ItemResponse>))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
     public async Task<IActionResult> ListItems(int categoryId, [BindRequired] int pageSize, [BindRequired] int page)
     {
         var result = await itemService.List(categoryId, pageSize, page);
 
-        return Ok(result);
+        return Ok(ItemMapper.Map(result));
     }
 
     [HttpPost]
     [Route("item")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(int))]
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
     public async Task<IActionResult> AddItem([FromBody] ItemRequest request)
     {
         try
         {
-            var result = await itemService.Add(ItemMapper.Map(request));
+            var item = ItemMapper.Map(request);
+            item.Id = await itemService.Add(item);
 
-            return Ok(result);
+            return Ok(ItemMapper.Map(item));
         }
         catch (FluentValidation.ValidationException ex)
         {
@@ -52,7 +54,7 @@ public class ItemController : ControllerBase
 
     [HttpPut]
     [Route("item/{itemId}")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -60,9 +62,10 @@ public class ItemController : ControllerBase
     {
         try
         {
-            await itemService.Update(ItemMapper.Map(request, itemId));
+            var item = ItemMapper.Map(request, itemId);
+            await itemService.Update(item);
 
-            return Ok();
+            return Ok(ItemMapper.Map(item));
         }
         catch (FluentValidation.ValidationException ex)
         {
