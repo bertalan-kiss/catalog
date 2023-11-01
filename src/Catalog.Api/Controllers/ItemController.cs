@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace Catalog.Api.Controllers;
 
 [ApiController]
-[Route("catalog")]
+[Route("catalog/item")]
 public class ItemController : ControllerBase
 {
     private readonly IItemService itemService;
@@ -22,7 +22,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet]
-    [Route("item/{categoryId}")]
+    [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<ItemResponse>))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
     public async Task<IActionResult> ListItems(int categoryId, [BindRequired] int pageSize, [BindRequired] int page)
@@ -33,7 +33,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpPost]
-    [Route("item")]
+    [Route("")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -53,7 +53,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpPut]
-    [Route("item/{itemId}")]
+    [Route("{itemId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
@@ -78,7 +78,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("item/{itemId}")]
+    [Route("{itemId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]

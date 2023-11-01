@@ -12,7 +12,7 @@ namespace Catalog.Api.Mappers
                 Id = categoryId ?? 0,
                 Name = request.Name,
                 ImageUrl = request.ImageUrl,
-                Parent = request.ParentCategoryId != null ? new Domain.Entities.Category
+                Parent = request.ParentCategoryId.HasValue ? new Domain.Entities.Category
                 {
                     Id = (int)request.ParentCategoryId
                 } : null

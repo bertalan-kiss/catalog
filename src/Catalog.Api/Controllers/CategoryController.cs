@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace Catalog.Api.Controllers;
 
 [ApiController]
-[Route("catalog")]
+[Route("catalog/category")]
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryService categoryService;
@@ -21,7 +21,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
-    [Route("category/{categoryId}")]
+    [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -39,7 +39,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
-    [Route("category")]
+    [Route("")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<CategoryResponse>))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -57,7 +57,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    [Route("category")]
+    [Route("")]
     [SwaggerResponse((int)HttpStatusCode.Created, nameof(HttpStatusCode.Created), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -82,7 +82,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPut]
-    [Route("category/{categoryId}")]
+    [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -112,7 +112,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("category/{categoryId}")]
+    [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
