@@ -10,15 +10,15 @@ namespace Catalog.Infrastructure
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection collection)
         {
-            collection.AddSingleton<ICategoryService, CategoryService>();
-            collection.AddSingleton<IItemService, ItemService>();
+            collection.AddScoped<ICategoryService, CategoryService>();
+            collection.AddScoped<IItemService, ItemService>();
             return collection;
         }
 
         public static IServiceCollection AddApplicationValidators(this IServiceCollection collection)
         {
-            collection.AddSingleton<IValidator<Category>, CategoryValidator>();
-            collection.AddSingleton<IValidator<Item>, ItemValidator>();
+            collection.AddScoped<IValidator<Category>, CategoryValidator>();
+            collection.AddScoped<IValidator<Item>, ItemValidator>();
             return collection;
         }
     }
