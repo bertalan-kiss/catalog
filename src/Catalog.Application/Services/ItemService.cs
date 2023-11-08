@@ -1,6 +1,8 @@
 ﻿using Catalog.Application.Interfaces;
 using Catalog.Domain.Entities;
+using Catalog.Domain.Exceptions;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace Catalog.Application.Services
 {
@@ -8,11 +10,15 @@ namespace Catalog.Application.Services
     {
         private readonly IItemRepository itemRepository;
         private readonly IValidator<Item> itemValidator;
+        private readonly IMessageSenderService messageSenderService;
+        private readonly ILogger<ItemService> logger;
 
-        public ItemService(IItemRepository itemRepository, IValidator<Item> itemValidator)
+        public ItemService(IItemRepository itemRepository, IValidator<Item> itemValidator, IMessageSenderService messageSenderService, ILogger<ItemService> logger)
         {
             this.itemRepository = itemRepository;
             this.itemValidator = itemValidator;
+            this.messageSenderService = messageSenderService;
+            this.logger = logger;
         }
 
         public async Task<int> Add(Item item)
@@ -42,6 +48,29 @@ namespace Catalog.Application.Services
             await itemValidator.ValidateAndThrowAsync(item);
 
             await itemRepository.Update(item);
+
+            await PublishUpdateMessage(item);
+        }
+
+        private async Task PublishUpdateMessage(Item item)
+        {
+            try
+            {
+                await messageSenderService.SendAsync(new Domain.Messages.ItemUpdatedMessage
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    ImageUrl = item.ImageUrl,
+                    CategoryId = item.Category.Id,
+                    Price = item.Price,
+                    Amount = item.Amount
+                });
+            }
+            catch (MessageSendoutFailedException ex)
+            {
+                logger.Log(LogLevel.Error, ex, ex?.Message);
+            }
         }
     }
 }
