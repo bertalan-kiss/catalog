@@ -20,6 +20,7 @@ public class ItemRepository : BaseRepository, IItemRepository
         var sql = @"
             INSERT INTO Item
             (
+                Identifier,
                 Name,
                 Description,
                 ImageUrl,
@@ -30,6 +31,7 @@ public class ItemRepository : BaseRepository, IItemRepository
             OUTPUT INSERTED.Id
             VALUES
             (
+                @Identifier,
                 @Name,
                 @Description,
                 @ImageUrl,
@@ -40,6 +42,7 @@ public class ItemRepository : BaseRepository, IItemRepository
 
         var parameters = new
         {
+            Identifier = item.Identifier,
             Name = item.Name,
             Description = item.Description,
             ImageUrl = item.ImageUrl,
@@ -75,6 +78,7 @@ public class ItemRepository : BaseRepository, IItemRepository
         return new Item
         {
             Id = item.Id,
+            Identifier = item.Identifier,
             Name = item.Name,
             Description = item.Description,
             ImageUrl = item.ImageUrl,
@@ -106,6 +110,7 @@ public class ItemRepository : BaseRepository, IItemRepository
             result.Add(new Item
             {
                 Id = item.Id,
+                Identifier = item.Identifier,
                 Name = item.Name,
                 Description = item.Description,
                 ImageUrl = item.ImageUrl,

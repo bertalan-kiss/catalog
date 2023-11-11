@@ -59,6 +59,7 @@ namespace Catalog.Application.Services
                 await messageSenderService.SendAsync(new Domain.Messages.ItemUpdatedMessage
                 {
                     Id = item.Id,
+                    Identifier = item.Identifier,
                     Name = item.Name,
                     Description = item.Description,
                     ImageUrl = item.ImageUrl,
