@@ -11,7 +11,7 @@ go
 
 CREATE TABLE [dbo].[Item] (
     [Id]          INT            IDENTITY (1, 1) NOT NULL,
-    [Identifier]  UNIQUEIDENTIFIER NOT NULL,
+    [Identifier]  UNIQUEIDENTIFIER NOT NULL UNIQUE,
     [Name]        NVARCHAR (50)  NOT NULL,
     [Description] NVARCHAR (MAX) NULL,
     [ImageUrl]    NVARCHAR (MAX) NULL,
