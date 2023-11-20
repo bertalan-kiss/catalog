@@ -1,4 +1,4 @@
-﻿namespace Catalog.Api.Configuration
+﻿namespace Catalog.Domain.Configuration
 {
     public class DatabaseConfiguration
     {

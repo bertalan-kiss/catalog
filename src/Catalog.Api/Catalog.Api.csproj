@@ -20,7 +20,6 @@
     <None Remove="Responses\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Requests\" />
     <Folder Include="Mappers\" />
     <Folder Include="Responses\" />

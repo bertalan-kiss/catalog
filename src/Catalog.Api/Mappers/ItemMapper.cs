@@ -10,6 +10,7 @@ namespace Catalog.Api.Mappers
             return new Domain.Entities.Item
             {
                 Id = itemId ?? 0,
+                Identifier = request.Identifier ?? Guid.NewGuid(),
                 Name = request.Name,
                 Description = request.Description,
                 ImageUrl = request.ImageUrl,
@@ -27,6 +28,7 @@ namespace Catalog.Api.Mappers
             return new ItemResponse
             {
                 Id = item.Id,
+                Identifier = item.Identifier,
                 Name = item.Name,
                 Description = item.Description,
                 ImageUrl = item.ImageUrl,
