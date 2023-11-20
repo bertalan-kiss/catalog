@@ -1,9 +1,11 @@
-﻿using System.Net;
+﻿using System.Data;
+using System.Net;
 using Catalog.Api.Mappers;
 using Catalog.Api.Requests;
 using Catalog.Api.Responses;
 using Catalog.Application.Services;
 using Catalog.Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -20,6 +22,7 @@ public class CategoryController : ControllerBase
         this.categoryService = categoryService;
     }
 
+    [Authorize(Roles = "manager,buyer")]
     [HttpGet]
     [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
@@ -38,6 +41,7 @@ public class CategoryController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager,buyer")]
     [HttpGet]
     [Route("")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<CategoryResponse>))]
@@ -56,6 +60,7 @@ public class CategoryController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager")]
     [HttpPost]
     [Route("")]
     [SwaggerResponse((int)HttpStatusCode.Created, nameof(HttpStatusCode.Created), typeof(CategoryResponse))]
@@ -81,6 +86,7 @@ public class CategoryController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager")]
     [HttpPut]
     [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
@@ -111,6 +117,7 @@ public class CategoryController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager")]
     [HttpDelete]
     [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]

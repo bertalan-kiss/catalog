@@ -2,6 +2,7 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Catalog.Api.Controllers
 {
@@ -9,6 +10,7 @@ namespace Catalog.Api.Controllers
     [Route("catalog")]
     public class CatalogController : ControllerBase
     {
+        [Authorize(Roles = "manager,buyer")]
         [HttpGet]
         [Route("")]
         [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<Link>))]

@@ -1,9 +1,11 @@
-﻿using System.Net;
+﻿using System.Data;
+using System.Net;
 using Catalog.Api.Mappers;
 using Catalog.Api.Requests;
 using Catalog.Api.Responses;
 using Catalog.Application.Services;
 using Catalog.Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,6 +23,7 @@ public class ItemController : ControllerBase
         this.itemService = itemService;
     }
 
+    [Authorize(Roles = "manager,buyer")]
     [HttpGet]
     [Route("{categoryId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<ItemResponse>))]
@@ -32,6 +35,7 @@ public class ItemController : ControllerBase
         return Ok(ItemMapper.Map(result));
     }
 
+    [Authorize(Roles = "manager")]
     [HttpPost]
     [Route("")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
@@ -52,6 +56,7 @@ public class ItemController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager")]
     [HttpPut]
     [Route("{itemId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
@@ -77,6 +82,7 @@ public class ItemController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "manager")]
     [HttpDelete]
     [Route("{itemId}")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
