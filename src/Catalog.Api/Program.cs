@@ -28,14 +28,14 @@ public class Program
         builder.Services.AddApplicationValidators();
         builder.Services.AddInfrastructureServices(config);
 
-        //builder.Services.AddMicrosoftIdentityWebApiAuthentication(config);
+        builder.Services.AddMicrosoftIdentityWebApiAuthentication(config);
 
-        builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
-        builder.Services.AddMvc(option =>
-        {
-            var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            option.Filters.Add(new AuthorizeFilter(policy));
-        }).AddMicrosoftIdentityUI();
+        //builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
+        //builder.Services.AddMvc(option =>
+        //{
+        //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        //    option.Filters.Add(new AuthorizeFilter(policy));
+        //}).AddMicrosoftIdentityUI();
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
