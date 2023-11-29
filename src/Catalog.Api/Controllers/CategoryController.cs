@@ -24,7 +24,7 @@ public class CategoryController : ControllerBase
 
     [HttpGet]
     [Route("{categoryId}")]
-    [Authorize(Roles = "Manager,Buyer")]
+    [Authorize(Roles = "CatalogApi.Read.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -43,7 +43,7 @@ public class CategoryController : ControllerBase
 
     [HttpGet]
     [Route("")]
-    [Authorize(Roles = "Manager,Buyer")]
+    [Authorize(Roles = "CatalogApi.Read.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<CategoryResponse>))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -62,7 +62,7 @@ public class CategoryController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.Created, nameof(HttpStatusCode.Created), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -88,7 +88,7 @@ public class CategoryController : ControllerBase
 
     [HttpPut]
     [Route("{categoryId}")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -119,7 +119,7 @@ public class CategoryController : ControllerBase
 
     [HttpDelete]
     [Route("{categoryId}")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]

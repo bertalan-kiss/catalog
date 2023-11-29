@@ -25,7 +25,7 @@ public class ItemController : ControllerBase
 
     [HttpGet]
     [Route("{categoryId}")]
-    [Authorize(Roles = "Manager,Buyer")]
+    [Authorize(Roles = "CatalogApi.Read.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<ItemResponse>))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
     public async Task<IActionResult> ListItems(int categoryId, [BindRequired] int pageSize, [BindRequired] int page)
@@ -37,7 +37,7 @@ public class ItemController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -58,7 +58,7 @@ public class ItemController : ControllerBase
 
     [HttpPut]
     [Route("{itemId}")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(ItemResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
@@ -84,7 +84,7 @@ public class ItemController : ControllerBase
 
     [HttpDelete]
     [Route("{itemId}")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]

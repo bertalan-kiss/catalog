@@ -13,7 +13,7 @@ namespace Catalog.Api.Controllers
     {
         [HttpGet]
         [Route("")]
-        [Authorize(Roles = "Manager,Buyer")]
+        [Authorize(Roles = "CatalogApi.Read.All")]
         [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<Link>))]
         public IActionResult Root() => Ok(new List<Link>
         {
