@@ -4,6 +4,7 @@ using Catalog.Api.Requests;
 using Catalog.Api.Responses;
 using Catalog.Application.Services;
 using Catalog.Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -11,6 +12,7 @@ namespace Catalog.Api.Controllers;
 
 [ApiController]
 [Route("catalog/category")]
+[Authorize]
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryService categoryService;
@@ -22,6 +24,7 @@ public class CategoryController : ControllerBase
 
     [HttpGet]
     [Route("{categoryId}")]
+    [Authorize(Roles = "CatalogApi.Read.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -40,6 +43,7 @@ public class CategoryController : ControllerBase
 
     [HttpGet]
     [Route("")]
+    [Authorize(Roles = "CatalogApi.Read.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<CategoryResponse>))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError))]
@@ -58,6 +62,7 @@ public class CategoryController : ControllerBase
 
     [HttpPost]
     [Route("")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.Created, nameof(HttpStatusCode.Created), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -83,6 +88,7 @@ public class CategoryController : ControllerBase
 
     [HttpPut]
     [Route("{categoryId}")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CategoryResponse))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]
@@ -113,6 +119,7 @@ public class CategoryController : ControllerBase
 
     [HttpDelete]
     [Route("{categoryId}")]
+    [Authorize(Roles = "CatalogApi.Write.All")]
     [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
     [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]
     [SwaggerResponse((int)HttpStatusCode.Conflict, nameof(HttpStatusCode.Conflict), typeof(string))]

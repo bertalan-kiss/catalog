@@ -2,15 +2,18 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Catalog.Api.Controllers
 {
     [ApiController]
     [Route("catalog")]
+    [Authorize]
     public class CatalogController : ControllerBase
     {
         [HttpGet]
         [Route("")]
+        [Authorize(Roles = "CatalogApi.Read.All")]
         [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(IEnumerable<Link>))]
         public IActionResult Root() => Ok(new List<Link>
         {
