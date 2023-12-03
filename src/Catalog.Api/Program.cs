@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Catalog.Infrastructure;
+using GraphQL.Types;
 
 namespace Catalog.Api;
 
@@ -28,6 +29,16 @@ public class Program
         }
 
         app.UseAuthorization();
+
+        app.UseGraphQL<ISchema>("/graphql");            // url to host GraphQL endpoint
+        app.UseGraphQLPlayground(
+            "/playground",                               // url to host Playground at
+            new GraphQL.Server.Ui.Playground.PlaygroundOptions
+            {
+                GraphQLEndPoint = "/graphql",         // url of GraphQL endpoint
+                SubscriptionsEndPoint = "/graphql",   // url of GraphQL endpoint
+
+            });
 
         app.MapControllers();
         app.UseRouting();

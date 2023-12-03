@@ -10,11 +10,13 @@
     <None Remove="DataAccess\" />
     <None Remove="DataAccess\Repositories\" />
     <None Remove="DataAccess\Scripts\" />
+    <None Remove="GraphQl\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataAccess\" />
     <Folder Include="DataAccess\Repositories\" />
     <Folder Include="DataAccess\Scripts\" />
+    <Folder Include="GraphQl\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />

@@ -1,7 +1,10 @@
 ﻿using Catalog.Application.Interfaces;
 using Catalog.Domain.Configuration;
 using Catalog.Infrastructure.DataAccess.Repositories;
+using Catalog.Infrastructure.GraphQl;
 using Catalog.Infrastructure.Kafka;
+using GraphQL;
+using GraphQL.Types;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +34,15 @@ namespace Catalog.Infrastructure
             collection.AddScoped<IMessageSenderService, MessageSenderService>();
             collection.AddScoped<IDbConnection>(connection => new SqlConnection(databaseConfiguration.ConnectionString));
             collection.Configure<KafkaConfiguration>(kafkaConfiguration);
+
+            collection.AddScoped<ICategoryGraphQlService, CategoryGraphQlService>();
+            collection.AddScoped<CategoryDetailsType>();
+            collection.AddScoped<CategoryQuery>();
+            collection.AddScoped<ISchema, CategoryDetailsSchema>();
+            collection.AddGraphQL(b => b
+                .AddAutoSchema<CategoryQuery>()  // schema
+                .AddSystemTextJson());   // serializer
+
             return collection;
         }
     }
