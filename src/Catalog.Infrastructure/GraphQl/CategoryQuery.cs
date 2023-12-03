@@ -8,7 +8,8 @@ namespace Catalog.Infrastructure.GraphQl
     {
 		public CategoryQuery(ICategoryGraphQlService categoryGraphQlService)
 		{
-            Field<ListGraphType<CategoryDetailsType>>(Name = "categories", resolve: x => categoryGraphQlService.GetCategoryList());
+            FieldAsync<ListGraphType<CategoryDetailsType>>(Name = "categories", 
+                resolve: async _ => await categoryGraphQlService.GetCategoryList());
         }
 	}
 
