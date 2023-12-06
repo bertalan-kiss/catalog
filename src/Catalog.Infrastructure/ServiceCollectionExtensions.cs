@@ -43,6 +43,13 @@ namespace Catalog.Infrastructure
                 .AddAutoSchema<CategoryQuery>()  // schema
                 .AddSystemTextJson());   // serializer
 
+            collection.AddScoped<ItemDetailsType>();
+            collection.AddScoped<ItemQuery>();
+            collection.AddScoped<ISchema, ItemDetailsSchema>();
+            collection.AddGraphQL(b => b
+                .AddAutoSchema<ItemQuery>()  // schema
+                .AddSystemTextJson());   // serializer
+
             return collection;
         }
     }
