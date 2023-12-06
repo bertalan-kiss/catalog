@@ -9,8 +9,8 @@ namespace Catalog.Infrastructure.GraphQl
         {
             Field(x => x.Id);
             Field(x => x.Name);
-            Field(x => x.ImageUrl);
-            //Field(x => x.ParentId);
+            Field(x => x.ImageUrl, nullable: true);
+            Field(x => x.ParentId, nullable: true);
         }
     }
 }
