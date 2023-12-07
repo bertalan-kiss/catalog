@@ -40,9 +40,11 @@ namespace Catalog.Infrastructure
             collection.AddScoped<CategoryQuery>();
             collection.AddScoped<ISchema, CategoryDetailsSchema>();
             collection.AddGraphQL(b => b
-                .AddAutoSchema<CategoryQuery>()  // schema
+                .AddAutoSchema<CategoryQuery>()  // sc            
                 .AddSystemTextJson());   // serializer
+                
 
+            collection.AddScoped<IItemGraphQlService, ItemGraphQlService>();
             collection.AddScoped<ItemDetailsType>();
             collection.AddScoped<ItemQuery>();
             collection.AddScoped<ISchema, ItemDetailsSchema>();

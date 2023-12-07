@@ -16,7 +16,6 @@
     <Folder Include="DataAccess\" />
     <Folder Include="DataAccess\Repositories\" />
     <Folder Include="DataAccess\Scripts\" />
-    <Folder Include="GraphQl\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
