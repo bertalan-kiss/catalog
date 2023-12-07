@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="GraphQL.AspNet" Version="1.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,11 +19,13 @@
     <None Remove="Requests\" />
     <None Remove="Mappers\" />
     <None Remove="Responses\" />
+    <None Remove="Controllers\GraphQL\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Requests\" />
     <Folder Include="Mappers\" />
     <Folder Include="Responses\" />
+    <Folder Include="Controllers\GraphQL\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj">
