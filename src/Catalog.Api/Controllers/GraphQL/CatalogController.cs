@@ -35,11 +35,21 @@ namespace Catalog.Api.Controllers.GraphQL
         [MutationRoot("addCategory")]
         public async Task<int?> AddCategory(CategoryRequest request)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || request == null)
                 return null;
 
             var category = CategoryMapper.Map(request);
             return await categoryService.Add(category);
+        }
+
+        [MutationRoot("addItem")]
+        public async Task<int?> AddItem(ItemRequest request)
+        {
+            if (!ModelState.IsValid || request == null)
+                return null;
+
+            var item = ItemMapper.Map(request);
+            return await itemService.Add(item);
         }
     }
 }
