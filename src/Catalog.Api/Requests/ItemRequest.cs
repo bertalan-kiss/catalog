@@ -12,7 +12,7 @@ namespace Catalog.Api.Requests
         [Required]
         public int CategoryId { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public float Price { get; set; }
         [Required]
         public int Amount { get; set; }
     }
