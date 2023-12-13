@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Carting\Carting.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Requests\" />
+    <None Remove="Mappers\" />
+    <None Remove="Controllers\V1\" />
+    <None Remove="Requests\V1\" />
+    <None Remove="Responses\" />
+    <None Remove="Responses\V1\" />
+    <None Remove="Requests\V2\" />
+    <None Remove="Responses\V2\" />
+    <None Remove="Mappers\V1\" />
+    <None Remove="Mappers\V2\" />
+    <None Remove="HostedService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Requests\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Controllers\V1\" />
+    <Folder Include="Requests\V1\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Responses\V1\" />
+    <Folder Include="Requests\V2\" />
+    <Folder Include="Responses\V2\" />
+    <Folder Include="Mappers\V1\" />
+    <Folder Include="Mappers\V2\" />
+    <Folder Include="HostedService\" />
+  </ItemGroup>
+</Project>

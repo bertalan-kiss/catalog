@@ -1,17 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1706.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{464991F9-A33E-4E26-B491-7BA094F0B155}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain", "src\Catalog.Domain\Catalog.Domain.csproj", "{3FE314C4-129B-47DA-AFB4-2FC675560039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "src\Catalog.Domain\Catalog.Domain.csproj", "{3FE314C4-129B-47DA-AFB4-2FC675560039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application", "src\Catalog.Application\Catalog.Application.csproj", "{6598EC51-A5C9-425C-A374-7029601B4D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Application", "src\Catalog.Application\Catalog.Application.csproj", "{6598EC51-A5C9-425C-A374-7029601B4D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "src\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{838ACA5B-5CC5-4FB9-B8C7-EC463093375D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "src\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{838ACA5B-5CC5-4FB9-B8C7-EC463093375D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api", "src\Catalog.Api\Catalog.Api.csproj", "{ED95B055-182A-42FF-B94A-AC8008857799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Api", "src\Catalog.Api\Catalog.Api.csproj", "{ED95B055-182A-42FF-B94A-AC8008857799}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carting", "src\Carting\Carting.csproj", "{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carting.Api", "src\Carting.Api\Carting.Api.csproj", "{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,17 +39,27 @@ Global
 		{ED95B055-182A-42FF-B94A-AC8008857799}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED95B055-182A-42FF-B94A-AC8008857799}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED95B055-182A-42FF-B94A-AC8008857799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0A5B9A33-8998-4F64-A64A-03C08B65A81D}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3FE314C4-129B-47DA-AFB4-2FC675560039} = {464991F9-A33E-4E26-B491-7BA094F0B155}
 		{6598EC51-A5C9-425C-A374-7029601B4D88} = {464991F9-A33E-4E26-B491-7BA094F0B155}
 		{838ACA5B-5CC5-4FB9-B8C7-EC463093375D} = {464991F9-A33E-4E26-B491-7BA094F0B155}
 		{ED95B055-182A-42FF-B94A-AC8008857799} = {464991F9-A33E-4E26-B491-7BA094F0B155}
+		{15ACD56E-FA9E-46E9-B102-3FF756E4BA0C} = {464991F9-A33E-4E26-B491-7BA094F0B155}
+		{6C1A8DBA-26A6-4680-A3E9-24E3D46AA261} = {464991F9-A33E-4E26-B491-7BA094F0B155}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A5B9A33-8998-4F64-A64A-03C08B65A81D}
 	EndGlobalSection
 EndGlobal
