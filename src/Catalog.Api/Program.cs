@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Catalog.Infrastructure;
+using GraphQL.AspNet.Configuration;
 
 namespace Catalog.Api;
 
@@ -18,6 +19,7 @@ public class Program
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddGraphQL();
 
         var app = builder.Build();
 
@@ -27,6 +29,8 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseGraphQL();
+        
         app.UseAuthorization();
 
         app.MapControllers();

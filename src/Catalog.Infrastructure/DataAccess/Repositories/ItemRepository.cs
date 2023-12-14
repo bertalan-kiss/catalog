@@ -83,7 +83,7 @@ public class ItemRepository : BaseRepository, IItemRepository
             Description = item.Description,
             ImageUrl = item.ImageUrl,
             Category = await categoryRepository.Get(item.CategoryId),
-            Price = item.Price,
+            Price = (float)item.Price,
             Amount = item.Amount
         };
     }
@@ -100,7 +100,7 @@ public class ItemRepository : BaseRepository, IItemRepository
             PageSize = pageSize,
             Offset = (page - 1) * pageSize
         };
-        
+
         var items = await connection.QueryAsync(sql, parameters);
 
         var result = new List<Item>();
@@ -115,7 +115,7 @@ public class ItemRepository : BaseRepository, IItemRepository
                 Description = item.Description,
                 ImageUrl = item.ImageUrl,
                 Category = await categoryRepository.Get(item.CategoryId),
-                Price = item.Price,
+                Price = (float)item.Price,
                 Amount = item.Amount
             });
         }
